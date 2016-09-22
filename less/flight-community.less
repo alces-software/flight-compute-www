@@ -1,0 +1,44 @@
+@import "variables.community.less";
+@import "flight.less";
+
+.ribbon-wrapper {
+    width: 250px;
+    height: 190px;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: -62px;
+}
+
+.ribbon {
+    font: bold 15px Sans-Serif;
+    text-align: center;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform:    rotate(-45deg);
+    -ms-transform:     rotate(-45deg);
+    -o-transform:      rotate(-45deg);
+    position: relative;
+    padding: 7px 0;
+    left: -5px;
+    top: 60px;
+    width: 300px;
+    background-color: #2794d8;
+    color: #fff;
+}
+
+.ribbon:before,
+.ribbon:after {
+    content: "";
+    border-top:   3px solid #6e8900;
+    border-left:  3px solid transparent;
+    border-right: 3px solid transparent;
+    position:absolute;
+    bottom: -3px;
+}
+
+.ribbon:before {
+    left: 0;
+}
+.ribbon:after {
+    right: 0;
+}

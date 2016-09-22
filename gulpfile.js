@@ -18,11 +18,22 @@ var banner = ['/*!\n',
 ].join('');
 
 // Default task
-gulp.task('default', ['less', 'minify-css', 'minify-js', 'copy']);
+gulp.task('default', ['less-community', 'less-professional', 'minify-css-community', 'minify-css-professional', 'minify-js', 'copy']);
 
 // Less task to compile the less files and add the banner
-gulp.task('less', function() {
-    return gulp.src('less/flight.less')
+gulp.task('less-community', function() {
+    return gulp.src('less/flight-community.less')
+        .pipe(less())
+        .pipe(header(banner, { pkg: pkg }))
+        .pipe(gulp.dest('css'))
+        .pipe(browserSync.reload({
+            stream: true
+        }))
+});
+
+// Less task to compile the less files and add the banner
+gulp.task('less-professional', function() {
+    return gulp.src('less/flight-professional.less')
         .pipe(less())
         .pipe(header(banner, { pkg: pkg }))
         .pipe(gulp.dest('css'))
@@ -32,8 +43,19 @@ gulp.task('less', function() {
 });
 
 // Minify CSS
-gulp.task('minify-css', function() {
-    return gulp.src('css/flight.css')
+gulp.task('minify-css-community', function() {
+    return gulp.src('css/flight-community.css')
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('css'))
+        .pipe(browserSync.reload({
+            stream: true
+        }))
+});
+
+// Minify CSS
+gulp.task('minify-css-professional', function() {
+    return gulp.src('css/flight-professional.css')
         .pipe(cleanCSS({ compatibility: 'ie8' }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('css'))
